@@ -1,0 +1,99 @@
+<!doctype html>
+
+<html land="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/styles.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body class="index" overflow="scroll">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand">Movies+</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li class="active"><a>Recommendations</a></li>
+            <li><a href="/../account">Account</a></li>
+            <li><a href="/../">Log Out</a></li>
+         </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div id="container" class="content">
+    <div style="overflow-y:scroll; height:650px; width:100%">
+    <h2 font-weight="bold" class="title" > <center>Generate Recommendations For {{name}}</center><h2>
+    <center><div style="color:#2e3037; background-color:#2e3037; width:90%">
+    <center><p id="tableTitle" class="tableHead"></p></center>
+
+    {% for table in tables %}
+            {{titles[loop.index]}}
+            {{ table|safe }}
+    {% endfor %}
+
+    <br>
+</div></center>
+  <div id="container" class="content">
+  <h2 font-weight="bold" class="title" > <center>{{name}}, add a review!</center><h2>
+      <center><div class="container-fluid">
+        <div class="row">
+          <div>
+              <form name="Rate A Movie" action="/add" class='form' method="post">
+              Film Name:<br>
+              <center><input list='filmList' name="filmName" size="50" required></center>
+              <datalist id="filmList" name="FilmList">
+                  {% for o in option_list %}
+                  <option value="{{ o }}">
+                  {% endfor %}
+              </datalist>
+              <br>
+              Rating:<br>
+              <select name="rating" required>
+                  <option value="0.0">0.0</option>
+                  <option value="0.5">0.5</option>
+                  <option value="1.0">1.0</option>
+                  <option value="1.5">1.5</option>
+                  <option value="2.0">2.0</option>
+                  <option value="2.5">2.5</option>
+                  <option value="3.0">3.0</option>
+                  <option value="3.5">3.5</option>
+                  <option value="4.0">4.0</option>
+                  <option value="4.5">4.5</option>
+                  <option value="5.0">5.0</option>
+                  </select>
+              <br><br>
+              <input type="submit" value="Submit">
+          </form>
+          <br>
+          <br>
+      </div>
+      </div>
+  </div>
+
+</div>
+<center><div style="color:#2e3037; background-color:#2e3037; width:90%; color:white">
+    <h2 font-weight="bold" class="title"><center>Your Stats:</center><h2>
+        <p>{{name}}, your favourite genre is {{genre}}!</p>
+        <br>
+        <p>You've made {{reviews}} reviews</p>
+        <br>
+        <p>Your highest rated movie is {{favourite}}<p>
+            <br>
+</div></center>
+</div>
+</div>
+
+</body>

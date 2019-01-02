@@ -1,0 +1,52 @@
+<!doctype html>
+
+<html land="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/styles.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body class="index" overflow="scroll">
+
+    <div id='scrolling'>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand">Movies+</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li><a href="/../return">Recommendations</a></li>
+            <li class="active"><a href="/../account">Account</a></li>
+            <li><a href="/../">Log Out</a></li>
+         </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div id="container" class="content">
+    <h2 font-weight="bold" class="title" > <center>Previous Reviews For {{name}}</center><h2>
+    </div>
+    <div style="overflow-y:scroll; height:600px; width:100%">
+
+
+    <center><p id="tableTitle" class="tableHead"></p></center>
+
+    {% for table in tables %}
+            {{titles[loop.index]}}
+            {{ table|safe }}
+    {% endfor %}
+</div>
+</div>
+</body>
